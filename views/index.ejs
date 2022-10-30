@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <title>Short URL</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Short It</h1>
+      <h5>Convert any long URL to short, readable & sharable url</h5>
+      <form action="/shortUrl" method="POST" class="my-4 form-inline">
+        <label for="fullUrl" class="sr-only">URL</label>
+        <input required placeholder='URL' type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2" />
+        <button class="btn btn-success" type="submit">Get Short URL</button>
+      </form>
+
+      <table class="table table-striped table-responsive-md table-hover">
+        <thead class="thead-light">
+          <th scope="col">Full URL</th>
+          <th scope="col">Short URL</th>
+          <th scope="col">Visits</th>
+        </thead>
+        <tbody>
+            <% shortUrls.forEach(shortUrl => { %>
+          <tr>
+            <td>
+              <a href="<%= shortUrl.fullUrl %>" target="_blank"><%= shortUrl.fullUrl %></a>
+            </td>
+            <td>
+              <a href="<%= shortUrl.shortUrl %>" target="_blank"><%= shortUrl.shortUrl %></a>
+            </td>
+            <td><%= shortUrl.clicks %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
