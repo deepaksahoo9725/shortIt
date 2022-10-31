@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 
 router.get('/', async (req, res) => {
     const shortUrls = await shortUrl.find()
-    res.render('index', { shortUrls });
+    res.render('index', { shortUrls, error:'' });
 })
 
 const isUrlPresent = async (req, res, next) => {
@@ -20,7 +20,7 @@ const isUrlPresent = async (req, res, next) => {
     const urlObj = await shortUrl.findOne({ fullUrl: postedUrl }) //check if already there
     if (urlObj != null) {//if present then send error
         const shortUrls = await shortUrl.find()
-        res.render('index', { shortUrls, error: 'Oops! URL already exists' });
+        return res.render('index', { shortUrls, error: 'Oops! URL already exists' });
     }
     next() //else proceed to create
 }
