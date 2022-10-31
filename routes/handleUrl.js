@@ -3,8 +3,10 @@ const shortUrl = require('../models/shortUrl')
 const router = express.Router()
 
 //log all types of requests
-router.use((req,res,next)=>{
-    console.log(`Time: ${Date.now()} ${req.method} Request: Path ${req.path}`)
+router.use((req, res, next) => {
+    const d = new Date();
+    const date_time = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    console.log(`Time: ${date_time} - ${req.method} Request: Path ${req.path}`)
     next()
 })
 
